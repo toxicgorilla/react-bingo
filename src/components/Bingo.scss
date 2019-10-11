@@ -1,29 +1,51 @@
-.Bingo {
+.Scorecard {
+  background: rgb(223, 118, 123);
+  border-radius: 20px;
+  max-width: 750px;
 
+  &-title {
+    color: white;
+    text-align: center;
+    font-weight: 200;
+    font-size: 4rem;
+    letter-spacing: 4rem;
+    margin: 20px -6rem 0 0;
+  }
+}
+
+.Bingo {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-area:  1/ 1;
+  grid-auto-rows: 1fr;
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
+  margin: 20px;
 
-  table {
-    width: 50%;
-    border-collapse: collapse;
-    margin: 40px auto;
+  &:before {
+    content: '';
+    width: 0;
+    padding-bottom: 100%;
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
 
-    tr {
-      box-sizing: border-box;
+  & > *:first-child {
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
 
-      td {
-        border: 2px #666 solid;
-        text-align: center;
-        font-size: 20px;
-        height: 100px;
-        width: 100px;
+  .Square {
+    border: 2px solid #e2e2e2;
+    border-right: none;
+    border-top: none;
 
-        td img {
-          height: 46px;
-          width: 46px;
-        }
-      }
+    &:nth-child(5n+6), &:first-child {
+      border-left: none;
+    }
+
+    &:nth-child(1n+21) {
+      border-bottom: none;
     }
   }
 }

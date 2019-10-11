@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import Square from './Square';
 import EmojiSquare from './EmojiSquare';
+import { getRandomSubSetOfArray } from "../utils/bingoUtils";
+
 import './Bingo.scss';
 import "./App.css";
 
@@ -10,36 +12,46 @@ interface Props {
 }
 
 const Bingo: React.FC<Props> = ({ phrases }) => {
+  const count = 24;
+  const randomSubSet = getRandomSubSetOfArray(phrases, count);
+  const [selectedPhrases] = useState<Array<string>>(randomSubSet);
+  const [checkedPhrases, setCheckedPhrases] = useState<number[]>([]);
 
-  const randomSubSet = getRandomSubSetOfArray(phrases, 25);
-  const [selectedPhrases, setSelectedPhrases] = useState<Array<string>>(randomSubSet);
+  const toggleSquare = (index: number) => {
+    const checked = [...checkedPhrases];
+    const squareIndex = checked.indexOf(index);
+
+    if (squareIndex > -1) {
+      current.splice(squareIndex)
+    } else {
+      current.push(index)
+    }
+
+    setCheckedPhrases(current);
+  };
 
   return (
-    <div className="Bingo">
-      {selectedPhrases.map(phrase => phrase === 'emoji' ? <EmojiSquare key={phrase} /> : <Square key={phrase} phrase={phrase} />)}
+    <div className="Scorecard">
+      <div className='Scorecard-title'>BINGO</div>
+      <div className="Bingo">
+        {selectedPhrases.map((phrase, index) => {
+          if (phrase === 'emoji') {
+            return <EmojiSquare key={phrase} />;
+          }
+
+          const isChecked = checked.includes(index);
+
+          return (
+            <Square key={phrase}
+                    phrase={phrase}
+                    isChecked={isChecked}
+                    onClick={() => toggleSquare(index)}
+            />
+          )
+        })}
+      </div>
     </div>
   );
 };
-
-const getRandomSubSetOfArray = (originalArray: Array<string>, count: number): Array<string> => {
-  const getRandomStringAndRemove = (): string => {
-    var randomIndex = Math.floor(Math.random() * originalArray.length) + 1;
-    var randomString = originalArray.splice(randomIndex, 1);
-
-    return randomString[0];
-  };
-
-  const subSet = new Array<string>();
-  for (let i = 0; i < count; i++) {
-    if (i === Math.floor(count / 2)) {
-      subSet.push('emoji')
-    }
-
-    const randomString = getRandomStringAndRemove();
-    subSet.push(randomString)
-  }
-
-  return subSet;
-}
 
 export default Bingo;

@@ -5,7 +5,7 @@ import "./App.css";
 import "./EmojiSquare.scss"
 
 const EmojiSquare: React.FC = () => {
-  const emojis = ['🤷‍', '🧐', '😈', '💋', '👀', '🎅'];
+  const emojis = ['🧀 ', '🤷‍', '🧐', '😈', '💋', '👀', '🎅'];
   const [index, setIndex] = useState<number>(0);
   const incrementIndex = () => {
     let newIndex = index + 1;

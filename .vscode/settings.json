@@ -1,0 +1,37 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    ".env": true,
+    // ".vscode": true,
+    ".env.development": true,
+    ".env.production": true,
+    ".env.test": true,
+    ".env-cmdrc": true,
+    ".babelrc": true,
+    ".editorconfig": true,
+    ".eslintignore": true,
+    ".eslintrc": true,
+    ".gitignore": true,
+    ".prettierrc": true,
+    ".storybook": true,
+    "build": true,
+    "node_modules": true,
+    "scripts": true,
+    "yarn.lock": true
+  },
+  "files.associations": {
+    "*.jsx": "javascriptreact"
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  // Format a file on save. A formatter must be available, the file must not be auto-saved, and editor must not be shutting down.
+  "editor.formatOnSave": true,
+  // Enable/disable default JavaScript formatter (For Prettier)
+  "javascript.format.enable": false,
+  "prettier.eslintIntegration": true
+}

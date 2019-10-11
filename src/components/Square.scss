@@ -1,0 +1,19 @@
+.Square {
+  user-select: none;
+  cursor: pointer;
+
+  color: #000;
+  &.checked {
+    // color: #cdcdcd;
+    background-image: url("/green-check.png");
+    background-size: 20%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    opacity: 0.2;
+  }
+
+  img {
+    height: 46px;
+    width: 46px;
+  }
+}

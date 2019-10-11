@@ -63,7 +63,14 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
 const getRandomSubSetOfArray = (originalArray: Array<string>, count: number): Array<string> => {
   const getRandomStringAndRemove = (): string => {
     var randomIndex = Math.floor(Math.random() * originalArray.length) + 1;
-    var randomString = originalArray.splice(randomIndex, 1);
+
+    console.log(`originalArray.length: ${originalArray.length}    randomIndex: ${randomIndex}`)
+
+    var randomString = originalArray.splice(randomIndex - 1, 1);
+
+    if (randomString[0] === "") {
+      console.log('no string!');
+    }
 
     return randomString[0];
   }

@@ -6,9 +6,9 @@ import "./App.css";
 const EmojiSquare: React.FC = () => {
   const cheeseClick = () => { };
   return (
-    <td onClick={cheeseClick}>
+    <div onClick={cheeseClick}>
       <span role="img" aria-label="shrug">🤷</span>
-    </td>
+    </div>
   );
 };
 

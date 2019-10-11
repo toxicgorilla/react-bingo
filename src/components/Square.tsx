@@ -21,9 +21,9 @@ const Square: React.FC<Props> = ({ phrase }) => {
 
   const className = isChecked ? "Square checked" : "Square";
   return (
-    <td className={className} onClick={invertIsChecked}>
+    <div className={className} onClick={invertIsChecked}>
       <span>{phrase}</span>
-    </td>
+    </div>
   );
 };
 

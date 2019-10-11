@@ -1,4 +1,9 @@
 .Bingo {
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-area:  1/ 1;
+
   table {
     width: 50%;
     border-collapse: collapse;

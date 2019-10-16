@@ -1,6 +1,8 @@
 .App {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     font-family: sans-serif;
+    min-height: 100vh;
+    padding-top: 50px;
 }

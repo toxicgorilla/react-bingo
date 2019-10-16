@@ -5,6 +5,7 @@ import EmojiSquare from './EmojiSquare';
 import { getRandomPhrases } from "../utils/bingo";
 
 import './Bingo.scss';
+import { MakeItFuckingRain } from "./MakeItFuckingRain";
 
 interface Props {
   phrases: Array<string>;
@@ -30,26 +31,29 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
   };
 
   return (
-    <div className="Scorecard">
-      <div className='Scorecard-title'>BINGO</div>
-      <div className="Bingo">
-        {selectedPhrases.map(phrase => {
-          if (phrase === 'emoji') {
-            return <EmojiSquare key={phrase} />;
-          }
+    <>
+      <div className="Scorecard">
+        <div className='Scorecard-title'>BINGO</div>
+        <div className="Bingo">
+          {selectedPhrases.map(phrase => {
+            if (phrase === 'emoji') {
+              return <EmojiSquare key={phrase} />;
+            }
 
-          const isChecked = checkedPhrases.includes(phrase);
+            const isChecked = checkedPhrases.includes(phrase);
 
-          return (
-            <Square key={phrase}
-                    phrase={phrase}
-                    isChecked={isChecked}
-                    onClick={() => toggleSquare(phrase)}
-            />
-          )
-        })}
+            return (
+              <Square key={phrase}
+                      phrase={phrase}
+                      isChecked={isChecked}
+                      onClick={() => toggleSquare(phrase)}
+              />
+            )
+          })}
+        </div>
       </div>
-    </div>
+      {checkedPhrases.length === count && <MakeItFuckingRain />}
+    </>
   );
 };
 

@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Square: React.FC<Props> = ({ phrase, onClick, isChecked }) => {
-  const crossedOutImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmuR_4xnj9h7-iRf7M69LXdy64egnbhe9MQmiTqKbvryhNpf-q';
+  // const crossedOutImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmuR_4xnj9h7-iRf7M69LXdy64egnbhe9MQmiTqKbvryhNpf-q';
   // // return (
   // //   <td className="Square" onClick={invertIsChecked}>
   // //     {isChecked ? <img src={crossedOutImageUrl} alt="checked" /> : <span>{phrase}</span>}
@@ -21,7 +21,8 @@ const Square: React.FC<Props> = ({ phrase, onClick, isChecked }) => {
 
   return (
     <div className={classnames('Square', { checked: isChecked })} onClick={onClick}>
-      <span>{phrase}</span>
+      <span className='answer'>{phrase}</span>
+      <span className='cheese'/>
     </div>
   );
 };

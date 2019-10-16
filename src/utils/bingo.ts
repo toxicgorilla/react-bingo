@@ -1,3 +1,4 @@
+import { memoize } from "./memoize";
 
 export const getRandomSubSetOfArray = (originalArray: Array<string>, count: number): Array<string> => {
   const getRandomStringAndRemove = (): string => {
@@ -27,3 +28,5 @@ export const getRandomSubSetOfArray = (originalArray: Array<string>, count: numb
 
   return subSet;
 };
+
+export const getRandomPhrases = memoize(getRandomSubSetOfArray);

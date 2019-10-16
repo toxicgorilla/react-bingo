@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 
 import Square from './Square';
 import EmojiSquare from './EmojiSquare';
-import { getRandomSubSetOfArray } from "../utils/bingoUtils";
+import { getRandomPhrases } from "../utils/bingo";
 
 import './Bingo.scss';
-import "./App.css";
 
 interface Props {
   phrases: Array<string>;
@@ -13,39 +12,39 @@ interface Props {
 
 const Bingo: React.FC<Props> = ({ phrases }) => {
   const count = 24;
-  const randomSubSet = getRandomSubSetOfArray(phrases, count);
+  const randomSubSet = getRandomPhrases(phrases, count);
   const [selectedPhrases] = useState<Array<string>>(randomSubSet);
-  const [checkedPhrases, setCheckedPhrases] = useState<number[]>([]);
+  const [checkedPhrases, setCheckedPhrases] = useState<string[]>([]);
 
-  const toggleSquare = (index: number) => {
+  const toggleSquare = (phrase: string) => {
     const checked = [...checkedPhrases];
-    const squareIndex = checked.indexOf(index);
+    const squareIndex = checked.indexOf(phrase);
 
     if (squareIndex > -1) {
-      current.splice(squareIndex)
+      checked.splice(squareIndex, 1)
     } else {
-      current.push(index)
+      checked.push(phrase)
     }
 
-    setCheckedPhrases(current);
+    setCheckedPhrases(checked);
   };
 
   return (
     <div className="Scorecard">
       <div className='Scorecard-title'>BINGO</div>
       <div className="Bingo">
-        {selectedPhrases.map((phrase, index) => {
+        {selectedPhrases.map(phrase => {
           if (phrase === 'emoji') {
             return <EmojiSquare key={phrase} />;
           }
 
-          const isChecked = checked.includes(index);
+          const isChecked = checkedPhrases.includes(phrase);
 
           return (
             <Square key={phrase}
                     phrase={phrase}
                     isChecked={isChecked}
-                    onClick={() => toggleSquare(index)}
+                    onClick={() => toggleSquare(phrase)}
             />
           )
         })}

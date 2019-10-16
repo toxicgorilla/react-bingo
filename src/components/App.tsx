@@ -10,7 +10,7 @@ const App: React.FC = () => {
       <Bingo phrases={phrases} />
     </div>
   );
-}
+};
 
 
 export default App;

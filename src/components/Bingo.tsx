@@ -2,86 +2,59 @@ import React, { useState } from 'react';
 
 import Square from './Square';
 import EmojiSquare from './EmojiSquare';
+import { getRandomPhrases } from "../utils/bingo";
+
 import './Bingo.scss';
-import "./App.css";
+import { MakeItFuckingRain } from "./MakeItFuckingRain";
 
 interface Props {
   phrases: Array<string>;
 }
 
 const Bingo: React.FC<Props> = ({ phrases }) => {
+  const count = 24;
+  const randomSubSet = getRandomPhrases(phrases, count);
+  const [selectedPhrases] = useState<Array<string>>(randomSubSet);
+  const [checkedPhrases, setCheckedPhrases] = useState<string[]>([]);
 
-  const randomSubSet = getRandomSubSetOfArray(phrases, 24);
-  const [selectedPhrases, setSelectedPhrases] = useState<Array<string>>(randomSubSet);
+  const toggleSquare = (phrase: string) => {
+    const checked = [...checkedPhrases];
+    const squareIndex = checked.indexOf(phrase);
 
-  return (
-    <div className="Bingo">
-      <table>
-        <tbody>
-          <tr>
-            <Square phrase={selectedPhrases[0]} />
-            <Square phrase={selectedPhrases[1]} />
-            <Square phrase={selectedPhrases[2]} />
-            <Square phrase={selectedPhrases[3]} />
-            <Square phrase={selectedPhrases[4]} />
-          </tr>
-          <tr>
-            <Square phrase={selectedPhrases[5]} />
-            <Square phrase={selectedPhrases[6]} />
-            <Square phrase={selectedPhrases[7]} />
-            <Square phrase={selectedPhrases[8]} />
-            <Square phrase={selectedPhrases[9]} />
-          </tr>
-          <tr>
-            <Square phrase={selectedPhrases[10]} />
-            <Square phrase={selectedPhrases[11]} />
-
-            <EmojiSquare />
-            <Square phrase={selectedPhrases[12]} />
-            <Square phrase={selectedPhrases[13]} />
-          </tr>
-          <tr>
-            <Square phrase={selectedPhrases[14]} />
-            <Square phrase={selectedPhrases[15]} />
-            <Square phrase={selectedPhrases[16]} />
-            <Square phrase={selectedPhrases[17]} />
-            <Square phrase={selectedPhrases[18]} />
-          </tr>
-          <tr>
-            <Square phrase={selectedPhrases[19]} />
-            <Square phrase={selectedPhrases[20]} />
-            <Square phrase={selectedPhrases[21]} />
-            <Square phrase={selectedPhrases[22]} />
-            <Square phrase={selectedPhrases[23]} />
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-const getRandomSubSetOfArray = (originalArray: Array<string>, count: number): Array<string> => {
-  const getRandomStringAndRemove = (): string => {
-    var randomIndex = Math.floor(Math.random() * originalArray.length) + 1;
-
-    console.log(`originalArray.length: ${originalArray.length}    randomIndex: ${randomIndex}`)
-
-    var randomString = originalArray.splice(randomIndex - 1, 1);
-
-    if (randomString[0] === "") {
-      console.log('no string!');
+    if (squareIndex > -1) {
+      checked.splice(squareIndex, 1)
+    } else {
+      checked.push(phrase)
     }
 
-    return randomString[0];
-  }
+    setCheckedPhrases(checked);
+  };
 
-  const subSet = new Array<string>();
-  for (let i = 0; i < count; i++) {
-    const randomString = getRandomStringAndRemove();
-    subSet.push(randomString)
-  }
+  return (
+    <>
+      <div className="Scorecard">
+        <div className='Scorecard-title'>BINGO</div>
+        <div className="Bingo">
+          {selectedPhrases.map(phrase => {
+            if (phrase === 'emoji') {
+              return <EmojiSquare key={phrase} />;
+            }
 
-  return subSet;
-}
+            const isChecked = checkedPhrases.includes(phrase);
+
+            return (
+              <Square key={phrase}
+                      phrase={phrase}
+                      isChecked={isChecked}
+                      onClick={() => toggleSquare(phrase)}
+              />
+            )
+          })}
+        </div>
+      </div>
+      {checkedPhrases.length === count && <MakeItFuckingRain />}
+    </>
+  );
+};
 
 export default Bingo;

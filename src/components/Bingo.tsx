@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Square from './Square';
 import EmojiSquare from './EmojiSquare';
-import { getRandomPhrases } from "../utils/bingo";
+import { getRandomPhrases, getRandomSelectionOfEmojis } from "../utils/bingo";
 
 import './Bingo.scss';
 import { MakeItFuckingRain } from "./MakeItFuckingRain";
@@ -12,6 +12,7 @@ interface Props {
 }
 
 const Bingo: React.FC<Props> = ({ phrases }) => {
+  const centerSqaureEmojis = getRandomSelectionOfEmojis();
   const count = 24;
   const randomSubSet = getRandomPhrases(phrases, count);
   const [selectedPhrases] = useState<Array<string>>(randomSubSet);
@@ -37,16 +38,16 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
         <div className="Bingo">
           {selectedPhrases.map(phrase => {
             if (phrase === 'emoji') {
-              return <EmojiSquare key={phrase} />;
+              return <EmojiSquare key={phrase} emojis={centerSqaureEmojis} />;
             }
 
             const isChecked = checkedPhrases.includes(phrase);
 
             return (
               <Square key={phrase}
-                      phrase={phrase}
-                      isChecked={isChecked}
-                      onClick={() => toggleSquare(phrase)}
+                phrase={phrase}
+                isChecked={isChecked}
+                onClick={() => toggleSquare(phrase)}
               />
             )
           })}

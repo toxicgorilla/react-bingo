@@ -4,9 +4,11 @@ import './Bingo.scss';
 import "./App.css";
 import "./EmojiSquare.scss";
 
-const emojis = ['🧀 ', '🤷‍', '🧐', '😈', '💋', '👀', '🎅'];
+interface Props {
+  emojis: Array<string>;
+}
 
-const EmojiSquare: React.FC = () => {
+const EmojiSquare: React.FC<Props> = ({ emojis }) => {
   const [index, setIndex] = useState<number>(0);
 
   const incrementIndex = () => {
@@ -14,7 +16,7 @@ const EmojiSquare: React.FC = () => {
 
     let newIndex = index + 1;
 
-    if (newIndex > 5) {
+    if (newIndex >= emojis.length) {
       newIndex = 0;
     }
 

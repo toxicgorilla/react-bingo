@@ -1,8 +1,11 @@
 import { memoize } from "./memoize";
+import emojis from '../emojis.json'
+
+const randomIntFromInterval = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
 
 export const getRandomSubSetOfArray = (originalArray: Array<string>, count: number): Array<string> => {
   const getRandomStringAndRemove = (): string => {
-    const randomIndex = Math.floor(Math.random() * originalArray.length) + 1;
+    const randomIndex = randomIntFromInterval(1, originalArray.length);
 
     console.log(`originalArray.length: ${originalArray.length}    randomIndex: ${randomIndex}`);
 
@@ -30,3 +33,25 @@ export const getRandomSubSetOfArray = (originalArray: Array<string>, count: numb
 };
 
 export const getRandomPhrases = memoize(getRandomSubSetOfArray);
+
+export const getRandomSelectionOfEmojis = () => {
+  const array = new Array<string>();
+
+  const randomAmount = randomIntFromInterval(4, 8);
+  const randomCheeseIndex = randomIntFromInterval(0, randomAmount - 1);
+  while (array.length < randomAmount) {
+    if (array.indexOf("🧀") === -1 && array.length === randomCheeseIndex) {
+      array.push("🧀");
+    }
+    else {
+      const randomIndex = randomIntFromInterval(1, emojis.length);
+      const emoji = emojis[randomIndex];
+
+      if (array.indexOf(emoji) === -1) {
+        array.push(emoji);
+      }
+    }
+  }
+
+  return array;
+}

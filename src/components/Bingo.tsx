@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import classnames from 'classnames';
 
 import Square from './Square';
 import EmojiSquare from './EmojiSquare';
@@ -17,6 +18,7 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
   const randomSubSet = getRandomPhrases(phrases, count);
   const [selectedPhrases] = useState<Array<string>>(randomSubSet);
   const [checkedPhrases, setCheckedPhrases] = useState<string[]>([]);
+  const ITS_BINGO = checkedPhrases.length === count;
 
   const toggleSquare = (phrase: string) => {
     const checked = [...checkedPhrases];
@@ -33,7 +35,7 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
 
   return (
     <>
-      <div className="Scorecard">
+      <div className={classnames("Scorecard", { completed: ITS_BINGO })}>
         <div className='Scorecard-title'>BINGO</div>
         <div className="Bingo">
           {selectedPhrases.map(phrase => {
@@ -53,7 +55,7 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
           })}
         </div>
       </div>
-      {checkedPhrases.length === count && <MakeItFuckingRain />}
+      {ITS_BINGO && <MakeItFuckingRain />}
     </>
   );
 };

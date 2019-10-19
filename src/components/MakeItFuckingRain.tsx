@@ -8,9 +8,15 @@ const getRandom = (min: number, max: number) => {
 
 const getRandomBool = () => Math.random() >= 0.5;
 
+const safeForWorkCheese = '🧀';
 const forbiddenCheese = '🍆';
 
-export const Cheese: React.FC<{ index: number }> = ({ index }) => {
+interface CheeseProps {
+  index: number;
+  isBenisMode: boolean;
+}
+
+export const Cheese: React.FC<CheeseProps> = ({ index, isBenisMode }) => {
   const [x, setX] = useState(document.body.clientWidth / 2);
   const [animationDelay] = useState(getRandom(0, 3000));
   const [duration, setDuration] = useState(0);
@@ -37,7 +43,7 @@ export const Cheese: React.FC<{ index: number }> = ({ index }) => {
     }, d);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       const { newDuration } = randomize();
       loop(newDuration);
@@ -74,25 +80,29 @@ export const Cheese: React.FC<{ index: number }> = ({ index }) => {
     <div className='Cheese' style={fallStyle}>
       <div className='Cheese-x' style={xStyle}>
         <div className='Cheese-spinner' style={rotationStyle} onClick={convertToOurCause}>
-          {!isForbidden ? '🧀' : forbiddenCheese}
+          {isBenisMode || isForbidden ? forbiddenCheese : safeForWorkCheese}
         </div>
       </div>
     </div>
   )
 };
 
-export const MakeItFuckingRain = () => {
+interface MakeItFuckingRainProps {
+  isBenisMode: boolean;
+}
+
+export const MakeItFuckingRain: React.FC<MakeItFuckingRainProps> = ({ isBenisMode }) => {
   const [cheese, setCheese] = useState();
 
   useEffect(() => {
     const cheese: any = [];
 
     for (let c = 0; c < 50; c++) {
-      cheese.push(<Cheese key={c} index={c} />)
+      cheese.push(<Cheese key={c} index={c} isBenisMode={isBenisMode} />)
     }
 
     setCheese(cheese);
-  }, []);
+  }, [isBenisMode]);
 
   return (
     <div className='MakeItFuckingRain'>

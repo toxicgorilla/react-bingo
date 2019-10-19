@@ -17,7 +17,7 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
   const randomSubSet = getRandomPhrases(phrases, count);
   const [selectedPhrases] = useState<Array<string>>(randomSubSet);
   const [checkedPhrases, setCheckedPhrases] = useState<string[]>([]);
-  const ITS_BINGO = true || checkedPhrases.length === count;
+  const ITS_BINGO = checkedPhrases.length === count;
 
   const toggleSquare = (phrase: string) => {
     const checked = [...checkedPhrases];

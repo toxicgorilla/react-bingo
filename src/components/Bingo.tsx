@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 
+import Title from './Title';
 import Square from './Square';
 import EmojiSquare from './EmojiSquare';
 import { getRandomPhrases, getRandomSelectionOfEmojis } from "../utils/bingo";
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const Bingo: React.FC<Props> = ({ phrases }) => {
+  const [isBenisMode, setIsBenisMode] = useState<boolean>(false);
   const centerSqaureEmojis = getRandomSelectionOfEmojis();
   const count = 24;
   const randomSubSet = getRandomPhrases(phrases, count);
@@ -36,7 +38,9 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
   return (
     <>
       <div className={classnames("Scorecard", { completed: ITS_BINGO })}>
-        <div className='Scorecard-title'>BINGO</div>
+        <div className='Scorecard-title'>
+          <Title isBenisMode={isBenisMode} setIsBenisMode={setIsBenisMode} />
+        </div>
         <div className="Bingo">
           {selectedPhrases.map(phrase => {
             if (phrase === 'emoji') {
@@ -55,7 +59,7 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
           })}
         </div>
       </div>
-      {ITS_BINGO && <MakeItFuckingRain />}
+      {ITS_BINGO && <MakeItFuckingRain isBenisMode={isBenisMode} />}
     </>
   );
 };

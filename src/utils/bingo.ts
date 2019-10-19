@@ -6,9 +6,6 @@ const randomIntFromInterval = (min: number, max: number) => Math.floor(Math.rand
 export const getRandomSubSetOfArray = (originalArray: Array<string>, count: number): Array<string> => {
   const getRandomStringAndRemove = (): string => {
     const randomIndex = randomIntFromInterval(1, originalArray.length);
-
-    console.log(`originalArray.length: ${originalArray.length}    randomIndex: ${randomIndex}`);
-
     const randomString = originalArray.splice(randomIndex - 1, 1);
 
     if (randomString[0] === "") {

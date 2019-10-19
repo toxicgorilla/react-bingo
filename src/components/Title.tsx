@@ -17,7 +17,7 @@ const Title: React.FC<Props> = ({ isBenisMode, toggleBenisMode, isCheatMode, tog
   };
 
   const onClickI = () => {
-    toggleBenisMode();
+    alert('Sorry. You do not have enough services');
   };
 
   const onClickN = () => {
@@ -25,7 +25,7 @@ const Title: React.FC<Props> = ({ isBenisMode, toggleBenisMode, isCheatMode, tog
   };
 
   const onClickG = () => {
-    toggleBenisMode();
+    alert('Sorry. You do not have enough services');
   };
 
   const onClickO = () => {

@@ -1,0 +1,29 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: sans-serif;
+  min-height: 100vh;
+  padding-top: 50px;
+
+  &.night-mode {
+    background: rgb(50, 54, 57);
+
+    .Bingo {
+      background: rgb(178, 178, 178);
+    }
+
+    .Scorecard {
+      background: rgb(50, 54, 57);
+
+      .Square {
+        background-color: rgb(53, 59, 69);
+        border: 2px solid rgb(178, 178, 178);
+
+        .answer {
+          color: rgb(178, 178, 178);
+        }
+      }
+    }
+  }
+}

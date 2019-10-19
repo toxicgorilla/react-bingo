@@ -14,9 +14,7 @@ interface Props {
   toggleNightMode: () => void;
 }
 
-const theCheeseyKey = '🧀';
-
-const Bingo: React.FC<Props> = ({ phrases }) => {
+const Bingo: React.FC<Props> = ({ phrases, toggleNightMode }) => {
   const [isBenisMode, setIsBenisMode] = useState<boolean>(false);
   const [centerSquareEmojiIndex, setCenterSquareEmojiIndex] = useState<number>(0);
   const [centerSquareEmojis, setCenterSquareEmojis] = useState<string[]>(getRandomSelectionOfEmojis());

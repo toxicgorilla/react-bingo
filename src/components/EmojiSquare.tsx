@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './Bingo.scss';
-import "./App.css";
 import "./EmojiSquare.scss";
 
 interface Props {

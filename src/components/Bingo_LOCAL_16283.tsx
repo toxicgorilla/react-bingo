@@ -11,7 +11,6 @@ import { MakeItFuckingRain } from "./MakeItFuckingRain";
 
 interface Props {
   phrases: Array<string>;
-  toggleNightMode: () => void;
 }
 
 const theCheeseyKey = '🧀';
@@ -49,16 +48,16 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
     <>
       <div className={classnames("Scorecard", { completed: ITS_BINGO })}>
         <div className='Scorecard-title'>
-          <Title isBenisMode={isBenisMode} setIsBenisMode={setIsBenisMode} toggleNightMode={toggleNightMode} />
+          <Title isBenisMode={isBenisMode} setIsBenisMode={setIsBenisMode} />
         </div>
         <div className="Bingo">
           {selectedPhrases.map(phrase => {
             if (phrase === 'emoji') {
               return (
                 <EmojiSquare key={phrase}
-                  activeIndex={centerSquareEmojiIndex}
-                  setActiveIndex={setCenterSquareEmojiIndex}
-                  emojis={centerSquareEmojis}
+                             activeIndex={centerSquareEmojiIndex}
+                             setActiveIndex={setCenterSquareEmojiIndex}
+                             emojis={centerSquareEmojis}
                 />);
             }
 
@@ -66,9 +65,9 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
 
             return (
               <Square key={phrase}
-                phrase={phrase}
-                isChecked={isChecked}
-                onClick={() => toggleSquare(phrase)}
+                      phrase={phrase}
+                      isChecked={isChecked}
+                      onClick={() => toggleSquare(phrase)}
               />
             )
           })}

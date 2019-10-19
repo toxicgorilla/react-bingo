@@ -11,15 +11,11 @@ import { MakeItFuckingRain } from "./MakeItFuckingRain";
 
 interface Props {
   phrases: Array<string>;
-  toggleNightMode: () => void;
 }
-
-const theCheeseyKey = '🧀';
 
 const Bingo: React.FC<Props> = ({ phrases }) => {
   const [isBenisMode, setIsBenisMode] = useState<boolean>(false);
-  const [centerSquareEmojiIndex, setCenterSquareEmojiIndex] = useState<number>(0);
-  const [centerSquareEmojis, setCenterSquareEmojis] = useState<string[]>(getRandomSelectionOfEmojis());
+  const centerSqaureEmojis = getRandomSelectionOfEmojis();
   const count = 24;
   const randomSubSet = getRandomPhrases(phrases, count);
   const [selectedPhrases] = useState<Array<string>>(randomSubSet);
@@ -27,10 +23,6 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
   const ITS_BINGO = checkedPhrases.length === count;
 
   const toggleSquare = (phrase: string) => {
-    if (centerSquareEmojis[centerSquareEmojiIndex] !== theCheeseyKey) {
-      return;
-    }
-
     const checked = [...checkedPhrases];
     const squareIndex = checked.indexOf(phrase);
 
@@ -41,25 +33,18 @@ const Bingo: React.FC<Props> = ({ phrases }) => {
     }
 
     setCheckedPhrases(checked);
-    setCenterSquareEmojis(getRandomSelectionOfEmojis());
-    setCenterSquareEmojiIndex(0);
   };
 
   return (
     <>
       <div className={classnames("Scorecard", { completed: ITS_BINGO })}>
         <div className='Scorecard-title'>
-          <Title isBenisMode={isBenisMode} setIsBenisMode={setIsBenisMode} toggleNightMode={toggleNightMode} />
+          <Title isBenisMode={isBenisMode} setIsBenisMode={setIsBenisMode} />
         </div>
         <div className="Bingo">
           {selectedPhrases.map(phrase => {
             if (phrase === 'emoji') {
-              return (
-                <EmojiSquare key={phrase}
-                  activeIndex={centerSquareEmojiIndex}
-                  setActiveIndex={setCenterSquareEmojiIndex}
-                  emojis={centerSquareEmojis}
-                />);
+              return <EmojiSquare key={phrase} emojis={centerSqaureEmojis} />;
             }
 
             const isChecked = checkedPhrases.includes(phrase);

@@ -1,8 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import './Bingo.scss';
-import "./App.css";
 import "./Square.scss";
 
 interface Props {
@@ -22,7 +20,7 @@ const Square: React.FC<Props> = ({ phrase, onClick, isChecked }) => {
   return (
     <div className={classnames('Square', { checked: isChecked })} onClick={onClick}>
       <span className='answer'>{phrase}</span>
-      <span className='cheese'/>
+      <span className='cheese' />
     </div>
   );
 };

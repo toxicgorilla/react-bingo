@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import './App.css';
+import classnames from 'classnames';
+
+import './App.scss';
 import Bingo from './Bingo';
 import phrases from './phrases.json'
 
 const App: React.FC = () => {
+  const [isNightMode, setIsNightMode] = useState<boolean>(false);
+  const toggleNightMode = () => {
+    setIsNightMode(!isNightMode);
+  };
   return (
-    <div className="App">
-      <Bingo phrases={phrases} />
-    </div>
+    <div className={classnames("App", { "night-mode": isNightMode })}>
+      <Bingo phrases={phrases} toggleNightMode={toggleNightMode} />
+    </div >
   );
 };
 

@@ -1,3 +1,12 @@
+@keyframes danceBitch {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .Scorecard {
   background: rgb(223, 118, 123);
   border-radius: 20px;
@@ -10,6 +19,14 @@
     letter-spacing: 4rem;
     margin: 20px -6rem 0 0;
     font-weight: 900;
+  }
+
+  &.completed {
+    .EmojiSquare {
+      span {
+        animation: danceBitch 1s linear infinite;
+      }
+    }
   }
 }
 

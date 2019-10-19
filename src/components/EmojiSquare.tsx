@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './Bingo.scss';
 import "./App.css";
@@ -6,24 +6,25 @@ import "./EmojiSquare.scss";
 
 interface Props {
   emojis: Array<string>;
+  activeIndex: number;
+  setActiveIndex(index: number): void;
 }
 
-const EmojiSquare: React.FC<Props> = ({ emojis }) => {
-  const [index, setIndex] = useState<number>(0);
+const EmojiSquare: React.FC<Props> = ({ emojis, activeIndex, setActiveIndex }) => {
 
   const incrementIndex = () => {
     // TODO: Implement Browser Collapse after 100
 
-    let newIndex = index + 1;
+    let newIndex = activeIndex + 1;
 
     if (newIndex >= emojis.length) {
       newIndex = 0;
     }
 
-    setIndex(newIndex);
+    setActiveIndex(newIndex);
   };
 
-  const currentEmoji = emojis[index];
+  const currentEmoji = emojis[activeIndex];
 
   return (
     <div className="Square EmojiSquare" onClick={incrementIndex}>

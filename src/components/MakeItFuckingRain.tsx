@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 
 import './MakeItFuckingRain.scss';
 
@@ -6,47 +6,77 @@ const getRandom = (min: number, max: number) => {
   return (Math.random() * (max - min)) + min;
 };
 
+const getRandomBool = () => Math.random() >= 0.5;
+
 const forbiddenCheese = '🍆';
 
 export const Cheese: React.FC<{ index: number }> = ({ index }) => {
   const [x, setX] = useState(document.body.clientWidth / 2);
-  const [rotate, setRotate] = useState(getRandom(0, 360));
-  const [speed] = useState(getRandom(10, 20));
-  const [y, setY] = useState(-200);
-  const requestRef = React.useRef<number>();
+  const [animationDelay] = useState(getRandom(0, 3000));
+  const [duration, setDuration] = useState(0);
+  const [rotationReverse, setRotationReverse] = useState(getRandomBool());
+  const [rotationSpeed, setRotationSpeed] = useState(getRandom(4000, 5000));
+  const [isForbidden, setIsForbidden] = useState(false);
 
-  const cheeseRef = React.useRef<HTMLDivElement>(null);
+  const randomize = () => {
+    const newX = getRandom(0, document.body.clientWidth);
+    const newDuration = getRandom(2000, 3000);
 
-  const animate = () => {
-    setY(current => {
-      let next = current + speed;
+    setX(newX);
+    setDuration(newDuration);
 
-      if (current > (document.body.clientHeight)) {
-        setX(getRandom(0, document.body.clientWidth));
-        setRotate(getRandom(0, 360));
-        next = -200;
-      }
+    return { newDuration }
+  };
 
-      return next;
-    });
-
-    requestRef.current = requestAnimationFrame(animate);
+  const loop = (d: number) => {
+    setTimeout(() => {
+      setRotationSpeed(getRandom(3000, 5000));
+      setRotationReverse(getRandomBool());
+      setX(getRandom(0, document.body.clientWidth));
+      loop(d);
+    }, d);
   };
 
   React.useEffect(() => {
-    setX(getRandom(0, document.body.clientWidth));
-
     setTimeout(() => {
-      requestRef.current = requestAnimationFrame(animate);
-    }, getRandom(0, 3000));
+      const { newDuration } = randomize();
+      loop(newDuration);
+    }, animationDelay);
 
-    return () => cancelAnimationFrame(requestRef.current!);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const fallStyle: CSSProperties = {
+    animationName: 'fall',
+    animationDelay: `${animationDelay / 1000}s`,
+    animationDuration: `${duration / 1000}s`,
+    animationTimingFunction: 'linear',
+    animationIterationCount: 'infinite'
+  };
+
+  const rotationStyle: CSSProperties = {
+    animationName: 'spin',
+    animationDuration: `${rotationSpeed / 1000}s`,
+    animationTimingFunction: 'linear',
+    animationIterationCount: 'infinite',
+    animationDirection: `${rotationReverse ? 'reverse' : 'normal'}`
+  };
+
+  const xStyle: CSSProperties = {
+    transform: `translateX(${x}px)`
+  };
+
+  const convertToOurCause = () => {
+    setIsForbidden(true);
+  };
+
   return (
-    <div className='Cheese' ref={cheeseRef} style={{ transform: `translate(${x}px, ${y}px) rotate(${rotate}deg)` }}>
-      {index !== 10 ? '🧀' : forbiddenCheese}
+    <div className='Cheese' style={fallStyle}>
+      <div className='Cheese-x' style={xStyle}>
+        <div className='Cheese-spinner' style={rotationStyle} onClick={convertToOurCause}>
+          {!isForbidden ? '🧀' : forbiddenCheese}
+        </div>
+      </div>
     </div>
   )
 };
@@ -57,7 +87,7 @@ export const MakeItFuckingRain = () => {
   useEffect(() => {
     const cheese: any = [];
 
-    for (let c = 0; c < 20; c++) {
+    for (let c = 0; c < 50; c++) {
       cheese.push(<Cheese key={c} index={c} />)
     }
 

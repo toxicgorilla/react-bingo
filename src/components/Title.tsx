@@ -1,28 +1,35 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React from 'react';
 
 import "./Title.scss";
 
 interface Props {
   isBenisMode: boolean,
-  setIsBenisMode: Dispatch<SetStateAction<boolean>>,
-  toggleNightMode: () => void,
+  toggleBenisMode: () => void;
+  isCheatMode: boolean,
+  toggleCheatMode: () => void;
+  isNightMode: boolean,
+  toggleNightMode: () => void;
 }
 
-const Title: React.FC<Props> = ({ isBenisMode, setIsBenisMode, toggleNightMode }) => {
-  const [countB, setCountB] = useState<number>(0);
+const Title: React.FC<Props> = ({ isBenisMode, toggleBenisMode, isCheatMode, toggleCheatMode, isNightMode, toggleNightMode }) => {
   const onClickB = () => {
+    toggleBenisMode();
+  };
 
-    let newCountB = countB + 1;
-    if (newCountB === 10) {
-      newCountB = 0;
-    }
+  const onClickI = () => {
+    toggleBenisMode();
+  };
 
-    setCountB(newCountB);
-    setIsBenisMode(newCountB >= 5);
+  const onClickN = () => {
+    toggleNightMode();
+  };
+
+  const onClickG = () => {
+    toggleBenisMode();
   };
 
   const onClickO = () => {
-    toggleNightMode();
+    toggleCheatMode();
   }
 
   return (
@@ -30,11 +37,21 @@ const Title: React.FC<Props> = ({ isBenisMode, setIsBenisMode, toggleNightMode }
       <span className="Title--character" onClick={onClickB}>
         {isBenisMode ? "🍆" : "B"}
       </span>
-      <span className="Title--character">I</span>
-      <span className="Title--character">N</span>
-      <span className="Title--character">G</span>
+      <span className="Title--character" onClick={onClickI}>
+        {/* {isBenisMode ? "🍆" : "I"} */
+          <>I</>
+        }
+      </span>
+      <span className="Title--character" onClick={onClickN}>
+        {isNightMode ? "🌌" : "N"}
+      </span>
+      <span className="Title--character" onClick={onClickG}>
+        {/* {isBenisMode ? "🍆" : "G"} */
+          <>G</>
+        }
+      </span>
       <span className="Title--character" onClick={onClickO}>
-        O
+        {isCheatMode ? "😲" : "O"}
       </span>
     </div>
   );

@@ -5,13 +5,15 @@ import "./Title.scss";
 interface Props {
   isBenisMode: boolean,
   toggleBenisMode: () => void;
-  isCheatMode: boolean,
-  toggleCheatMode: () => void;
   isNightMode: boolean,
   toggleNightMode: () => void;
+  isGunAndBadgeMode: boolean,
+  toggleGunAndBadgeMode: () => void;
+  isCheatMode: boolean,
+  toggleCheatMode: () => void;
 }
 
-const Title: React.FC<Props> = ({ isBenisMode, toggleBenisMode, isCheatMode, toggleCheatMode, isNightMode, toggleNightMode }) => {
+const Title: React.FC<Props> = ({ isBenisMode, toggleBenisMode, isNightMode, toggleNightMode, isGunAndBadgeMode, toggleGunAndBadgeMode, isCheatMode, toggleCheatMode, }) => {
   const onClickB = () => {
     toggleBenisMode();
   };
@@ -25,7 +27,7 @@ const Title: React.FC<Props> = ({ isBenisMode, toggleBenisMode, isCheatMode, tog
   };
 
   const onClickG = () => {
-    alert('Sorry. You do not have enough services');
+    toggleGunAndBadgeMode();
   };
 
   const onClickO = () => {
@@ -46,9 +48,7 @@ const Title: React.FC<Props> = ({ isBenisMode, toggleBenisMode, isCheatMode, tog
         {isNightMode ? "🌌" : "N"}
       </span>
       <span className="Title--character" onClick={onClickG}>
-        {/* {isBenisMode ? "🍆" : "G"} */
-          <>G</>
-        }
+        {isGunAndBadgeMode ? "🔫" : "G"}
       </span>
       <span className="Title--character" onClick={onClickO}>
         {isCheatMode ? "😲" : "O"}

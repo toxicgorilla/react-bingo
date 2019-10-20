@@ -10,21 +10,28 @@
   font-size: 0.8rem;
   position: relative;
 
-  .cheese {
+  .stamp {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background-image: url("/cheese.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 130%;
+    background-size: 120%;
     z-index: 5;
     transition: all 0.2s linear;
     opacity: 0;
     transform: scale(7.5);
     pointer-events: none;
+
+    &.cheese {
+      background-image: url("/cheese.png");
+    }
+
+    &.badge {
+      background-image: url("/badge2.png");
+    }
   }
 
   .answer {
@@ -37,6 +44,11 @@
     }
 
     .cheese {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .badge {
       opacity: 1;
       transform: scale(1);
     }

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 import classnames from 'classnames';
 
-import './App.scss';
-import Bingo from './Bingo';
-import phrases from './phrases.json'
+import './GameRoute.scss';
+import Bingo  from '../Bingo';
+import phrases from '../phrases.json'
 
-const App: React.FC = () => {
+const GameRoute: React.FC = () => {
   const [isBenisMode, setIsBenisMode] = useState<boolean>(false);
   const toggleBenisMode = () => {
     const newValue = !isBenisMode;
@@ -55,7 +55,7 @@ const App: React.FC = () => {
     setIsNightMode(!isNightMode);
   };
   return (
-    <div className={classnames("App", { "night-mode": isNightMode })}>
+    <div className={classnames("GameRoute", { "night-mode": isNightMode })}>
       <Bingo phrases={phrases}
         isBenisMode={isBenisMode} toggleBenisMode={toggleBenisMode}
         isCheatMode={isCheatMode} toggleCheatMode={toggleCheatMode}
@@ -65,4 +65,4 @@ const App: React.FC = () => {
 };
 
 
-export default App;
+export default GameRoute;

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 
 import './GameRoute.scss';
-import Bingo  from '../Bingo';
+import Bingo from '../Bingo';
 import phrases from '../phrases.json'
 
 const GameRoute: React.FC = () => {
@@ -45,21 +45,31 @@ const GameRoute: React.FC = () => {
     }
   };
 
-  const [isCheatMode, setIsCheatMode] = useState<boolean>(false);
-  const toggleCheatMode = () => {
-    setIsCheatMode(!isCheatMode);
-  };
 
   const [isNightMode, setIsNightMode] = useState<boolean>(false);
   const toggleNightMode = () => {
     setIsNightMode(!isNightMode);
   };
+
+  const [isGunAndBadgeMode, setIsGunAndBageMode] = useState<boolean>(false);
+  const toggleGunAndBadgeMode = () => {
+    setIsGunAndBageMode(!isGunAndBadgeMode);
+  };
+
+
+  const [isCheatMode, setIsCheatMode] = useState<boolean>(false);
+  const toggleCheatMode = () => {
+    setIsCheatMode(!isCheatMode);
+  };
+
   return (
     <div className={classnames("GameRoute", { "night-mode": isNightMode })}>
       <Bingo phrases={phrases}
         isBenisMode={isBenisMode} toggleBenisMode={toggleBenisMode}
+        isNightMode={isNightMode} toggleNightMode={toggleNightMode}
+        isGunAndBadgeMode={isGunAndBadgeMode} toggleGunAndBadgeMode={toggleGunAndBadgeMode}
         isCheatMode={isCheatMode} toggleCheatMode={toggleCheatMode}
-        isNightMode={isNightMode} toggleNightMode={toggleNightMode} />
+      />
     </div >
   );
 };

@@ -50,6 +50,11 @@ const GameRoute: React.FC = () => {
     setIsNightMode(!isNightMode);
   };
 
+  const [isInvertedMode, setIsInvertedMode] = useState<boolean>(false);
+  const toggleIsInvertedMode = () => {
+    setIsInvertedMode(!isInvertedMode);
+  };
+
   const [isGunAndBadgeMode, setIsGunAndBageMode] = useState<boolean>(false);
   const toggleGunAndBadgeMode = () => {
     setIsGunAndBageMode(!isGunAndBadgeMode);
@@ -64,6 +69,7 @@ const GameRoute: React.FC = () => {
     <div className={classnames("GameRoute", { "night-mode": isNightMode })}>
       <Bingo phrases={phrases}
         isBenisMode={isBenisMode} toggleBenisMode={toggleBenisMode}
+        isInvertedMode={isInvertedMode} toggleIsInvertedMode={toggleIsInvertedMode}
         isNightMode={isNightMode} toggleNightMode={toggleNightMode}
         isGunAndBadgeMode={isGunAndBadgeMode} toggleGunAndBadgeMode={toggleGunAndBadgeMode}
         isCheatMode={isCheatMode} toggleCheatMode={toggleCheatMode}

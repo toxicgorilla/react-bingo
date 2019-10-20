@@ -1,6 +1,11 @@
 .Title {
-  &--character {
+  &__character {
     user-select: none;
     cursor: pointer;
+
+    &--inverted {
+      display: inline-block;
+      transform: scale(-1, 1);
+    }
   }
 }

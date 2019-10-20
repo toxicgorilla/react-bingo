@@ -1,0 +1,84 @@
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  49% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.StartRoute {
+  font-family: 'Press Start 2P', cursive;
+  min-height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  text-align: center;
+
+  .Title {
+    font-size: 5rem;
+    text-shadow: #04bbff 0px 10px 0px;
+    color: #00f2ff;
+
+    .CheeseyText {
+      text-shadow: #ffde04 0px 10px 0px;
+      color: #fff900;
+    }
+
+    .BingoText {
+      font-size: 7rem;
+      margin-top: 2rem;
+      text-shadow: #04bbff 0px 10px 0px;
+      color: #00f2ff;
+    }
+  }
+
+  .Introduction {
+
+    .Credits {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .Coin {
+        background-image: url("/coin.gif");
+        height: 1.5rem;
+        width: 1.5rem;
+        margin-left: 10px;
+        background-position: center;
+        background-size: 400%;
+        display: inline-block;
+      }
+    }
+
+    .Instructions {
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    .PressStart {
+      margin-top: 60px;
+      line-height: 1rem;
+      animation: blink 1s linear infinite;
+      cursor: pointer;
+    }
+
+    &.empty {
+      .Instructions {
+        animation: blink 2s linear infinite;
+      }
+
+      .PressStart {
+        opacity: 0;
+        animation: none;
+      }
+    }
+  }
+}

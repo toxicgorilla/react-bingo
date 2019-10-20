@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 
-import Title from './Title';
-import Square from './Square';
-import EmojiSquare from './EmojiSquare';
-import { getRandomPhrases, getRandomSelectionOfEmojis } from "../utils/bingo";
+import Title from '../Title/Title';
+import Square from '../Square/Square';
+import EmojiSquare from '../EmojiSquare/EmojiSquare';
+import { getRandomPhrases, getRandomSelectionOfEmojis } from "../../utils/bingo";
+import MakeItFuckingRain from "../MakeItFuckingRain";
 
 import './Bingo.scss';
-import { MakeItFuckingRain } from "./MakeItFuckingRain";
 
 interface Props {
   phrases: Array<string>;

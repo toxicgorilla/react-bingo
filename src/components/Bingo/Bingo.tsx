@@ -13,6 +13,8 @@ interface Props {
   phrases: Array<string>;
   isBenisMode: boolean,
   toggleBenisMode: () => void;
+  isInvertedMode: boolean,
+  toggleIsInvertedMode: () => void;
   isNightMode: boolean,
   toggleNightMode: () => void;
   isGunAndBadgeMode: boolean,
@@ -23,7 +25,7 @@ interface Props {
 
 const theCheeseyKey = '🧀';
 
-const Bingo: React.FC<Props> = ({ phrases, isBenisMode, toggleBenisMode, isNightMode, toggleNightMode, isGunAndBadgeMode, toggleGunAndBadgeMode, isCheatMode, toggleCheatMode }) => {
+const Bingo: React.FC<Props> = ({ phrases, isBenisMode, toggleBenisMode, isInvertedMode, toggleIsInvertedMode, isNightMode, toggleNightMode, isGunAndBadgeMode, toggleGunAndBadgeMode, isCheatMode, toggleCheatMode }) => {
   const [centerSquareEmojiIndex, setCenterSquareEmojiIndex] = useState<number>(0);
   const [centerSquareEmojis, setCenterSquareEmojis] = useState<string[]>(getRandomSelectionOfEmojis());
   const count = 24;
@@ -57,6 +59,7 @@ const Bingo: React.FC<Props> = ({ phrases, isBenisMode, toggleBenisMode, isNight
         <div className='Scorecard-title'>
           <Title
             isBenisMode={isBenisMode} toggleBenisMode={toggleBenisMode}
+            isInvertedMode={isInvertedMode} toggleIsInvertedMode={toggleIsInvertedMode}
             isNightMode={isNightMode} toggleNightMode={toggleNightMode}
             isGunAndBadgeMode={isGunAndBadgeMode} toggleGunAndBadgeMode={toggleGunAndBadgeMode}
             isCheatMode={isCheatMode} toggleCheatMode={toggleCheatMode} />

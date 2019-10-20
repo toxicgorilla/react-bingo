@@ -1,10 +1,13 @@
 import React from 'react';
+import classnames from 'classnames';
 
 import "./Title.scss";
 
 interface Props {
   isBenisMode: boolean,
   toggleBenisMode: () => void;
+  isInvertedMode: boolean,
+  toggleIsInvertedMode: () => void;
   isNightMode: boolean,
   toggleNightMode: () => void;
   isGunAndBadgeMode: boolean,
@@ -13,13 +16,13 @@ interface Props {
   toggleCheatMode: () => void;
 }
 
-const Title: React.FC<Props> = ({ isBenisMode, toggleBenisMode, isNightMode, toggleNightMode, isGunAndBadgeMode, toggleGunAndBadgeMode, isCheatMode, toggleCheatMode, }) => {
+const Title: React.FC<Props> = ({ isBenisMode, toggleBenisMode, isInvertedMode, toggleIsInvertedMode, isNightMode, toggleNightMode, isGunAndBadgeMode, toggleGunAndBadgeMode, isCheatMode, toggleCheatMode, }) => {
   const onClickB = () => {
     toggleBenisMode();
   };
 
   const onClickI = () => {
-    alert('Sorry. You do not have enough services');
+    toggleIsInvertedMode();
   };
 
   const onClickN = () => {
@@ -36,24 +39,22 @@ const Title: React.FC<Props> = ({ isBenisMode, toggleBenisMode, isNightMode, tog
 
   return (
     <div className="Title">
-      <span className="Title--character" onClick={onClickB}>
+      <span className="Title__character" onClick={onClickB}>
         {isBenisMode ? "🍆" : "B"}
       </span>
-      <span className="Title--character" onClick={onClickI}>
-        {/* {isBenisMode ? "🍆" : "I"} */
-          <>I</>
-        }
+      <span className={classnames("", { "Title__character": !isInvertedMode }, { "Title__character--inverted": isInvertedMode })} onClick={onClickI}>
+        {isInvertedMode ? "✍" : "I"}
       </span>
-      <span className="Title--character" onClick={onClickN}>
+      <span className="Title__character" onClick={onClickN}>
         {isNightMode ? "🌌" : "N"}
       </span>
-      <span className="Title--character" onClick={onClickG}>
+      <span className="Title__character" onClick={onClickG}>
         {isGunAndBadgeMode ? "🔫" : "G"}
       </span>
-      <span className="Title--character" onClick={onClickO}>
+      <span className="Title__character" onClick={onClickO}>
         {isCheatMode ? "😲" : "O"}
       </span>
-    </div>
+    </div >
   );
 };
 

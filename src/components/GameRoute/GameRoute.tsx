@@ -45,7 +45,6 @@ const GameRoute: React.FC = () => {
     }
   };
 
-
   const [isNightMode, setIsNightMode] = useState<boolean>(false);
   const toggleNightMode = () => {
     setIsNightMode(!isNightMode);
@@ -55,7 +54,6 @@ const GameRoute: React.FC = () => {
   const toggleGunAndBadgeMode = () => {
     setIsGunAndBageMode(!isGunAndBadgeMode);
   };
-
 
   const [isCheatMode, setIsCheatMode] = useState<boolean>(false);
   const toggleCheatMode = () => {

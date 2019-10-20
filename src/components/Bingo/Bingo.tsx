@@ -53,7 +53,7 @@ const Bingo: React.FC<Props> = ({ phrases, isBenisMode, toggleBenisMode, isNight
 
   return (
     <>
-      <div className={classnames("Scorecard", { completed: ITS_BINGO })}>
+      <div className={classnames("Scorecard", { badge: isGunAndBadgeMode }, { completed: ITS_BINGO })}>
         <div className='Scorecard-title'>
           <Title
             isBenisMode={isBenisMode} toggleBenisMode={toggleBenisMode}
@@ -79,6 +79,7 @@ const Bingo: React.FC<Props> = ({ phrases, isBenisMode, toggleBenisMode, isNight
                 phrase={phrase}
                 isChecked={isChecked}
                 onClick={() => toggleSquare(phrase)}
+                isGunAndBadgeMode={isGunAndBadgeMode}
               />
             )
           })}

@@ -48,7 +48,7 @@ const Title: React.FC<Props> = ({ isBenisMode, toggleBenisMode, isNightMode, tog
         {isNightMode ? "🌌" : "N"}
       </span>
       <span className="Title--character" onClick={onClickG}>
-        {isGunAndBadgeMode ? "👮" : "G"}
+        {isGunAndBadgeMode ? "🔫" : "G"}
       </span>
       <span className="Title--character" onClick={onClickO}>
         {isCheatMode ? "😲" : "O"}

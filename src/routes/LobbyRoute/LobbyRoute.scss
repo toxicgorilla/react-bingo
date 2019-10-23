@@ -1,0 +1,43 @@
+@import "../../styles/mixins";
+
+.LobbyRoute {
+  display: grid;
+  grid-template-areas: 'route-title route-title' 'create-game join-game';
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  flex: 1;
+
+  .RouteTitle {
+    grid-area: route-title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    line-height: 4rem;
+    padding-top: 5rem;
+  }
+
+  .CreateGame {
+    grid-area: create-game;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .JoinGame {
+    grid-area: join-game;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .Title {
+    padding: 10px 15px;
+    cursor: pointer;
+
+    &:hover {
+      background: #3a3a3a;
+    }
+  }
+}

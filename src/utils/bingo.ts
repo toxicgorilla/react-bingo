@@ -1,5 +1,5 @@
 import { memoize } from "./memoize";
-import emojis from '../emojis.json'
+import emojis from 'static/emojis.json'
 
 const randomIntFromInterval = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
 

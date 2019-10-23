@@ -1,0 +1,18 @@
+
+
+$min: 400px;
+$small: 650px;
+
+@mixin media-query($size){
+  @if $size == min {
+    @media (max-width: $min) {
+      @content;
+    }
+  }
+
+  @if $size == small {
+    @media (min-width: ($min + 1)) and (max-width: 650px) {
+      @content;
+    }
+  }
+}

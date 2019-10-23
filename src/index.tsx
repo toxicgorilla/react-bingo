@@ -1,19 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 
-import StartRoute from './components/StartRoute/StartRoute';
-import GameRoute from "./components/GameRoute/GameRoute";
+import Footer from "./components/Footer/Footer";
+
+import {StartRoute, LobbyRoute, GameRoute} from './routes';
 
 import './index.scss';
+
+const AppWrapper = styled.div`
+  display: grid;
+  grid-template-areas: 'main-content' 'footer';
+  grid-template-rows: 1fr auto;
+  flex: 1;
+`;
+
+const MainContent = styled.main`
+  grid-area: main-content;
+  display: flex;
+`;
 
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route path='/' exact component={StartRoute} />
-        <Route path='/bingo' component={GameRoute} />
-      </Switch>
+      <AppWrapper>
+        <MainContent>
+          <Switch>
+            <Route path='/' exact component={StartRoute} />
+            <Route path='/lobby' component={LobbyRoute} />
+            <Route path='/bingo' component={GameRoute} />
+          </Switch>
+        </MainContent>
+        <Footer />
+      </AppWrapper>
     </Router>
   )
 

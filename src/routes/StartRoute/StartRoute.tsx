@@ -4,15 +4,11 @@ import { RouteComponentProps } from "react-router";
 
 import './StartRoute.scss';
 
-interface Props extends RouteComponentProps {
-
-}
-
-const StartRoute: React.FC<Props> = ({ history }) => {
+const StartRoute: React.FC<RouteComponentProps> = ({ history }) => {
   const [credits, setCredits] = useState(0);
 
   const insertCredit = () => setCredits(credits + 1);
-  const pressStart = () => history.push('/bingo');
+  const pressStart = () => history.push('/lobby');
 
   return (
     <div className='StartRoute'>
@@ -25,12 +21,11 @@ const StartRoute: React.FC<Props> = ({ history }) => {
           <div>{credits} Credits</div>
           <div className='Coin' />
         </div>
-        <div className='Instructions' onClick={insertCredit}>Insert Coin/s</div>
+        <div className='Instructions' onClick={insertCredit}>Click to Insert Coin/s</div>
         <div className='PressStart' onClick={pressStart}>Press Start</div>
       </div>
-      <div>© McClusky Games and Co.</div>
     </div>
   )
 };
 
-export default StartRoute;
+export { StartRoute };

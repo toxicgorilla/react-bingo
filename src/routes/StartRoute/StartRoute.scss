@@ -1,3 +1,5 @@
+@import "../../styles/mixins";
+
 @keyframes blink {
   0% {
     opacity: 1;
@@ -14,31 +16,44 @@
 }
 
 .StartRoute {
-  font-family: 'Press Start 2P', cursive;
-  min-height: 100vh;
+  user-select: none;
+  text-align: center;
+  line-height: 2rem;
   display: grid;
   justify-content: center;
   align-items: center;
-  user-select: none;
-  text-align: center;
-  background: #252525;
-  color: white;
+  flex: 1;
 
   .Title {
-    font-size: 5rem;
-    text-shadow: #04bbff 0px 10px 0px;
-    color: #00f2ff;
+    line-height: normal;
 
     .CheeseyText {
-      text-shadow: #ffde04 0px 10px 0px;
+      font-size: 5rem;
+      text-shadow: #af9800 0 0.1em 0;
       color: #fff900;
+
+      @include media-query(min) {
+        font-size: 2rem;
+      }
+
+      @include media-query(small) {
+        font-size: 3rem;
+      }
     }
 
     .BingoText {
       font-size: 7rem;
       margin-top: 2rem;
-      text-shadow: #04bbff 0px 10px 0px;
+      text-shadow: #04bbff 0 0.1em 0;
       color: #00f2ff;
+
+      @include media-query(min) {
+        font-size: 2.8rem;
+      }
+
+      @include media-query(small) {
+        font-size: 4.2rem;
+      }
     }
   }
 

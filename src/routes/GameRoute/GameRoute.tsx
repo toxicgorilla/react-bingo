@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 
 import './GameRoute.scss';
-import Bingo from '../Bingo';
-import phrases from '../phrases.json'
+import Bingo from './components/Bingo';
+import phrases from 'static/phrases.json';
 
 const GameRoute: React.FC = () => {
   const [isBenisMode, setIsBenisMode] = useState<boolean>(false);
@@ -78,5 +78,4 @@ const GameRoute: React.FC = () => {
   );
 };
 
-
-export default GameRoute;
+export { GameRoute };

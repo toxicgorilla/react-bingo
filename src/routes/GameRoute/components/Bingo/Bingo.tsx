@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 
-import Title from '../Title/Title';
+import Title from 'components/Title/Title';
 import Square from '../Square/Square';
 import EmojiSquare from '../EmojiSquare/EmojiSquare';
-import { getRandomPhrases, getRandomSelectionOfEmojis } from "../../utils/bingo";
+import { getRandomPhrases, getRandomSelectionOfEmojis } from "utils/bingo";
 import MakeItFuckingRain from "../MakeItFuckingRain";
 
 import './Bingo.scss';

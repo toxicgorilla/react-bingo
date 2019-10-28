@@ -2,11 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  font-family: sans-serif;
-  min-height: 100vh;
   padding-top: 50px;
   flex: 1;
-  line-height: 1rem;
+  line-height: 1.5rem;
 
   &.night-mode {
     background: rgb(50, 54, 57);

@@ -1,3 +1,5 @@
+@import "../../../../styles/variables";
+
 @keyframes danceBitch {
   from {
     transform: rotate(0deg);
@@ -8,9 +10,8 @@
 }
 
 .Scorecard {
-  background: rgb(223, 118, 123);
   border-radius: 20px;
-  max-width: 750px;
+  flex: 1;
 
   &-title {
     color: white;
@@ -34,35 +35,15 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: 1fr;
-  padding: 10px;
-  background: white;
   margin: 20px;
-
-  &:before {
-    content: "";
-    width: 0;
-    padding-bottom: 100%;
-    grid-row: 1 / 1;
-    grid-column: 1 / 1;
-  }
-
-  & > *:first-child {
-    grid-row: 1 / 1;
-    grid-column: 1 / 1;
-  }
+  grid-gap: 4px;
+  border: 4px solid #ffffff;
+  background: white;
 
   .Square {
-    border: 2px solid #e2e2e2;
-    border-right: none;
-    border-top: none;
-
-    &:nth-child(5n + 6),
-    &:first-child {
-      border-left: none;
-    }
-
-    &:nth-child(1n + 21) {
-      border-bottom: none;
-    }
+    //border-right: none;
+    //border-top: none;
+    color: white;
+    background: $grey-dark;
   }
 }

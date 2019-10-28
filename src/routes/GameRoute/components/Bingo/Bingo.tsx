@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 
-import Title from 'components/Title/Title';
+import Title from '../Title/Title';
 import Square from '../Square/Square';
 import EmojiSquare from '../EmojiSquare/EmojiSquare';
 import { getRandomPhrases, getRandomSelectionOfEmojis } from "utils/bingo";

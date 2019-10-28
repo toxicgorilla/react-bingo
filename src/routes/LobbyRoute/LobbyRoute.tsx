@@ -1,21 +1,31 @@
 import React from 'react';
-
-import './LobbyRoute.scss';
 import { RouteComponentProps } from "react-router";
 
+import './LobbyRoute.scss';
+import { useUser } from "../../contexts/UserContext";
+
 const LobbyRoute: React.FC<RouteComponentProps> = ({ history }) => {
+  const user = useUser();
+
   const createGame = () => {
-    history.push('/bingo');
+    history.push('/create');
   };
 
-  const joinGame = () => {
-    history.push('/bingo');
+  const joinGame = async () => {
+    history.push('/join');
+  };
+
+  const goToUser = async () => {
+    history.push('/user');
   };
 
   return (
     <div className='LobbyRoute'>
       <div className='RouteTitle'>
         Lobby
+      </div>
+      <div className='User'>
+        <div className='Title' onClick={goToUser}>Playing as: {user}</div>
       </div>
       <div className='CreateGame'>
         <div className='Title' onClick={createGame}>Create Game</div>

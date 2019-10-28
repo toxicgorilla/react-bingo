@@ -1,0 +1,22 @@
+.WaitingForPlayers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+
+  .Game {
+    &--name {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    &--waitingMessage {
+      color: #ffdb24;
+    }
+
+    &--players {
+      color: #ffdb24;
+    }
+  }
+}

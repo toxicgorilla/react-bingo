@@ -1,17 +1,11 @@
 @import "../../styles/mixins";
 
-.LobbyRoute {
-  display: grid;
-  grid-template-areas: 'route-title route-title' 'user user' 'create-game join-game';
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto 1fr;
+.UserRoute {
+  display: flex;
+  flex-direction: column;
   flex: 1;
-
-  @include media-query(min){
-    grid-template-areas: 'route-title' 'user' 'create-game' 'join-game';
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto 1fr 1fr;
-  }
+  justify-content: center;
+  align-items: center;
 
   .RouteTitle {
     grid-area: route-title;
@@ -23,30 +17,36 @@
     padding-top: 5rem;
   }
 
-  .User {
-    grid-area: user;
+  .RouteContent {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
-    color: #00adff;
+    flex: 1;
   }
 
   .CreateGame {
-    grid-area: create-game;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .JoinGame {
-    grid-area: join-game;
+  .Input {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 2rem;
+    background: #34353d;
+    border: 0;
+    text-align: center;
+    color: white;
+    outline: none;
+    padding: 2rem 1rem;
+    margin-bottom: 1rem;
   }
 
-  .Title {
+  .SaveButton {
+    margin-top: 15px;
     padding: 10px 15px;
     cursor: pointer;
 

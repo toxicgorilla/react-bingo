@@ -9,7 +9,7 @@
 
 @keyframes fall {
   from {
-    transform: translateY(-200%);
+    transform: translateY(-400px);
   }
   to {
     transform: translateY(calc(100vh + 100px));
@@ -27,7 +27,7 @@
   .Cheese {
     position: absolute;
     font-size: 8rem;
-    transform: translateY(-200%);
+    transform: translateY(-400px);
     user-select: none;
   }
 }

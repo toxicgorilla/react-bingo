@@ -1,17 +1,9 @@
 @import "../../styles/mixins";
 
-.LobbyRoute {
-  display: grid;
-  grid-template-areas: 'route-title route-title' 'user user' 'create-game join-game';
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto 1fr;
+.JoinGameRoute {
+  display: flex;
+  flex-direction: column;
   flex: 1;
-
-  @include media-query(min){
-    grid-template-areas: 'route-title' 'user' 'create-game' 'join-game';
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto 1fr 1fr;
-  }
 
   .RouteTitle {
     grid-area: route-title;
@@ -23,30 +15,35 @@
     padding-top: 5rem;
   }
 
-  .User {
-    grid-area: user;
+  .RouteContent {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
-    color: #00adff;
-  }
-
-  .CreateGame {
-    grid-area: create-game;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 1;
   }
 
   .JoinGame {
-    grid-area: join-game;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .Title {
+  .GameId {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background: #34353d;
+    border: 0;
+    text-align: center;
+    color: white;
+    outline: none;
+    padding: 2rem 1rem;
+  }
+
+  .JoinGameButton {
+    margin-top: 15px;
     padding: 10px 15px;
     cursor: pointer;
 

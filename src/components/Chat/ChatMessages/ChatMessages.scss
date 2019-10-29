@@ -1,0 +1,45 @@
+
+.Chat--messages {
+  grid-area: chat-messages;
+  overflow-y: auto;
+  justify-content: center;
+
+  &--message {
+    border-bottom: 1px solid #363637;
+    line-height: 1.3rem;
+    margin-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    margin-right: 0.5rem;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &--title {
+      display: flex;
+      font-size: 0.5rem;
+      color: #343332;
+      margin-bottom: 0.3rem;
+    }
+
+    &--author {
+      margin-right: 0.5rem;
+    }
+
+    &--content {
+      font-size: 0.6rem;
+      line-height: 1rem;
+    }
+
+    &.isEmoji {
+      .Chat--messages--message--content {
+        font-size: 2rem;
+        line-height: 2rem;
+      }
+    }
+
+    &--sentAt {
+      font-size: 0.5rem;
+    }
+  }
+}

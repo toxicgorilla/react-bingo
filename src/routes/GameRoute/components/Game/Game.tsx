@@ -5,7 +5,6 @@ import classnames from 'classnames';
 import './Game.scss';
 
 import Bingo from '../Bingo';
-import phrases from 'static/phrases.json';
 import { Game } from "types";
 
 const BingoGame: React.FC = () => {
@@ -70,14 +69,14 @@ const BingoGame: React.FC = () => {
 
   return (
     <div className={classnames("Game", { "night-mode": isNightMode })}>
-      <Bingo phrases={phrases}
+      <Bingo
         isBenisMode={isBenisMode} toggleBenisMode={toggleBenisMode}
         isInvertedMode={isInvertedMode} toggleIsInvertedMode={toggleIsInvertedMode}
         isNightMode={isNightMode} toggleNightMode={toggleNightMode}
         isGunAndBadgeMode={isGunAndBadgeMode} toggleGunAndBadgeMode={toggleGunAndBadgeMode}
         isCheatMode={isCheatMode} toggleCheatMode={toggleCheatMode}
       />
-    </div >
+    </div>
   );
 };
 

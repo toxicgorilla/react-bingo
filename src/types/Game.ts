@@ -15,10 +15,16 @@ export interface GameCreate {
   startedByUser: string;
 }
 
+export interface Draw {
+  number: number;
+  name: string;
+  matched: boolean;
+}
+
 export interface Player {
   user: string;
   hasWon: boolean;
-  numbers: number[]
+  draws: Draw[]
 }
 
 export interface Game {

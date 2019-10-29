@@ -20,7 +20,6 @@ const GameRoute: React.FC<Props> = ({ match, games }) => {
 
   const game = games[gameId] || {};
 
-  console.log(game);
   useEffect(() => {
     console.log(game, user);
     if (game.gameId) {
@@ -31,7 +30,6 @@ const GameRoute: React.FC<Props> = ({ match, games }) => {
   if (!game.gameId) {
     return null;
   }
-
 
   const ready = game.status !== 0;
   const waitingForPlayers = game.status === 0;

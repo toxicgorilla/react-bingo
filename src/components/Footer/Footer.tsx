@@ -1,29 +1,16 @@
 import React from 'react';
-import classnames from 'classnames';
 
-import { AppState, ServerAppState } from "../../types";
+import ServerStatus from "../ServerStatus/ServerStatus";
 
 import './Footer.scss';
-import { connect } from "react-redux";
 
-interface Props {
-  server: ServerAppState;
-}
-
-const Footer: React.FC<Props> = ({ server }) => {
-  const { status } = server;
-
+const Footer = () => {
   return (
     <footer className='Footer'>
       <div className='Copyright'>© McClusky Games and Co.</div>
-      <div className={classnames('ServerStatus', status)}>
-        <span className='ServerStatus--icon' />
-        <span>{status}</span>
-      </div>
+      <ServerStatus />
     </footer>
   )
 };
 
-const mapStateToProps = ({ server }: AppState) => ({ server });
-
-export default connect(mapStateToProps)(Footer);
+export default Footer;

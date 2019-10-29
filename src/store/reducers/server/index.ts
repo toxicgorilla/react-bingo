@@ -3,7 +3,8 @@ import { ServerAppState, ServerStatus } from "../../../types";
 const initialState = {
   status: ServerStatus.CONNECTING,
   connectionAttempts: 0,
-  connectionError: undefined
+  connectionError: undefined,
+  maxRetriesReached: false
 };
 
 type ServerConnected = {
@@ -31,21 +32,29 @@ const server = (state: ServerAppState = initialState, action: AllServerActions):
 
   switch (action.type) {
     case 'SERVER/connected' : {
-      return { ...state, status: ServerStatus.CONNECTED }
+      return {
+        ...state,
+        status: ServerStatus.CONNECTED,
+        connectionError: undefined,
+        connectionAttempts: 0,
+        maxRetriesReached: false
+      }
     }
 
     case 'SERVER/disconnected' : {
-      return { ...state, status: ServerStatus.DISCONNECTED }
+      return { ...state, status: ServerStatus.DISCONNECTED, connectionError: undefined, connectionAttempts: 0 }
     }
 
     case 'SERVER/failed' : {
       const { error } = action.payload;
 
-      return { ...state, status: ServerStatus.DISCONNECTED, connectionError: error }
+      return { ...state, status: ServerStatus.FAILED, connectionError: error }
     }
 
     case 'SERVER/connecting' : {
-      return { ...state, status: ServerStatus.CONNECTING, connectionAttempts: state.connectionAttempts + 1 }
+      const connectionAttempts = state.connectionAttempts + 1;
+      const maxRetriesReached = connectionAttempts >= 5;
+      return { ...state, status: ServerStatus.CONNECTING, connectionAttempts, maxRetriesReached }
     }
   }
 

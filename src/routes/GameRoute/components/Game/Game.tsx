@@ -5,7 +5,6 @@ import classnames from 'classnames';
 import './Game.scss';
 
 import Bingo from '../Bingo';
-import { Game } from "types";
 
 const BingoGame: React.FC = () => {
 

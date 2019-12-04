@@ -15,6 +15,10 @@ class SocketService<Methods extends string, Events extends string> {
     this.socket.on(event, callback);
   }
 
+  onClose(callback: (error?: Error) => void) {
+    this.socket.onclose(callback)
+  }
+
   async send<T>(method: Methods, data?: any) {
     try {
       return await this.socket.invoke<T>(method, data);

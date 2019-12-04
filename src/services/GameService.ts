@@ -8,15 +8,15 @@ const LOBBY_URL = 'https://localhost:5001/hub/lobby';
 
 class GameService {
   constructor(private gameSocket = new SocketService<KnownMethods, KnownEvents>(LOBBY_URL)) {
-    this.gameSocket.start().then(() => {
-      console.log('LobbyGame Socket: Started');
-    });
-
     this.listen('LobbyNewGameHasStarted');
     this.listen('LobbyUserJoinedGame' );
     this.listen('LobbyPlayerNumbers');
     this.listen('LobbyPlayerMessage');
     this.listen('LobbyUpdateGame');
+  }
+
+  async start() {
+    return await this.gameSocket.start();
   }
 
   async join(game: GameRequest) {
@@ -25,6 +25,10 @@ class GameService {
 
   async create(game: GameCreate) {
     return await this.gameSocket.send<Game>('ClientStartedNewGame', game);
+  }
+
+  onStop(callback: () => void) {
+    this.gameSocket.onClose(callback);
   }
 
   onNewGame(callback: (game: Game) => void) {

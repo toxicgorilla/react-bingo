@@ -1,0 +1,23 @@
+
+.Chat--compose {
+  grid-area: chat-compose;
+  display: flex;
+  padding-top: 1rem;
+
+  form {
+    display: flex;
+    flex: 1;
+  }
+
+  textarea {
+    flex: 1;
+    line-height: 1rem;
+    resize: none;
+    min-height: 100px;
+    background: #1a1a1a;
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+    color: white;
+  }
+}

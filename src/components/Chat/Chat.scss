@@ -1,0 +1,42 @@
+.Chat {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #131414;
+  padding: 1rem;
+  display: grid;
+  grid-template-areas: 'chat-header' 'chat-messages' 'chat-compose';
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+  width: 350px;
+  justify-content: center;
+  transition: transform ease-in-out 0.15s;
+  transform: translateX(100%);
+
+  &.visible, &.peek {
+    transform: translateX(0%);
+  }
+
+  &--trigger {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+
+    &:hover {
+      background: #1b1b1b;
+    }
+  }
+
+  &--header {
+    grid-area: chat-header;
+    font-size: 2rem;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

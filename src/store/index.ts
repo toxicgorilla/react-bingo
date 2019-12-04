@@ -5,10 +5,11 @@ import rootSaga from './sagas';
 import reducers from './reducers';
 import { AppState } from "../types";
 import { AllGameActions } from "./reducers/games";
+import { AllServerActions } from "./reducers/server";
 
 const sagaMiddleware = createSagaMiddleware();
 
-type AllKnownActions = AllGameActions;
+type AllKnownActions = AllGameActions | AllServerActions;
 
 export type AppStore = Store<AppState, AllKnownActions>
 

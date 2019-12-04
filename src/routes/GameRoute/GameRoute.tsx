@@ -14,24 +14,22 @@ interface Props extends RouteComponentProps<{ gameId: string }> {
 }
 
 const GameRoute: React.FC<Props> = ({ match, games }) => {
-  const { gameId } = match.params;
-
   const user = useUser();
 
-  const game = games[gameId] || {};
+  const game = games[match.params.gameId] || {};
+  const { gameId } = game;
 
-  console.log(game);
   useEffect(() => {
-    console.log(game, user);
-    if (game.gameId) {
+    console.log(gameId, user);
+
+    if (gameId) {
       GameService.join({ user, gameId }).then();
     }
-  }, [game.gameId, user]);
+  }, [gameId, user]);
 
-  if (!game.gameId) {
+  if (!gameId) {
     return null;
   }
-
 
   const ready = game.status !== 0;
   const waitingForPlayers = game.status === 0;

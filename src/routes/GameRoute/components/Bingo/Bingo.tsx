@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 
 import Title from '../Title/Title';
 import Square from '../Square/Square';
-import { getRandomPhrases, getRandomSelectionOfEmojis } from "utils/bingo";
 import MakeItFuckingRain from "../MakeItFuckingRain";
 
 import './Bingo.scss';
@@ -11,7 +10,6 @@ import { useGame } from "../../../../contexts/GameContext";
 import { useUser } from "../../../../contexts/UserContext";
 
 interface Props {
-  phrases: Array<string>;
   isBenisMode: boolean,
   toggleBenisMode: () => void;
   isInvertedMode: boolean,
@@ -24,20 +22,15 @@ interface Props {
   toggleCheatMode: () => void;
 }
 
-const theCheeseyKey = '🧀';
+// const theCheeseyKey = '🧀';
 
-const Bingo: React.FC<Props> = ({ phrases, isBenisMode, toggleBenisMode, isInvertedMode, toggleIsInvertedMode, isNightMode, toggleNightMode, isGunAndBadgeMode, toggleGunAndBadgeMode, isCheatMode, toggleCheatMode }) => {
+const Bingo: React.FC<Props> = ({ isBenisMode, toggleBenisMode, isInvertedMode, toggleIsInvertedMode, isNightMode, toggleNightMode, isGunAndBadgeMode, toggleGunAndBadgeMode, isCheatMode, toggleCheatMode }) => {
   const game = useGame();
   const user = useUser();
 
-  console.log(game);
-
-  const [centerSquareEmojiIndex, setCenterSquareEmojiIndex] = useState<number>(0);
-  const [centerSquareEmojis, setCenterSquareEmojis] = useState<string[]>(getRandomSelectionOfEmojis());
-  const count = 24;
-  const randomSubSet = getRandomPhrases(phrases, count);
-  const [selectedPhrases] = useState<Array<string>>(randomSubSet);
-  const [checkedPhrases, setCheckedPhrases] = useState<string[]>([]);
+  // const [centerSquareEmojiIndex, setCenterSquareEmojiIndex] = useState<number>(0);
+  // const [centerSquareEmojis, setCenterSquareEmojis] = useState<string[]>(getRandomSelectionOfEmojis());
+  // const [checkedPhrases, setCheckedPhrases] = useState<string[]>([]);
   const you = game.players.find(p => p.user === user);
 
   if (!you) {
@@ -45,25 +38,25 @@ const Bingo: React.FC<Props> = ({ phrases, isBenisMode, toggleBenisMode, isInver
   }
 
   const ITS_BINGO = you.hasWon;
-
-  const toggleSquare = (phrase: string) => {
-    if (!isCheatMode && centerSquareEmojis[centerSquareEmojiIndex] !== theCheeseyKey) {
-      return;
-    }
-
-    const checked = [...checkedPhrases];
-    const squareIndex = checked.indexOf(phrase);
-
-    if (squareIndex > -1) {
-      checked.splice(squareIndex, 1)
-    } else {
-      checked.push(phrase)
-    }
-
-    setCheckedPhrases(checked);
-    setCenterSquareEmojis(getRandomSelectionOfEmojis());
-    setCenterSquareEmojiIndex(0);
-  };
+  //
+  // const toggleSquare = (phrase: string) => {
+  //   if (!isCheatMode && centerSquareEmojis[centerSquareEmojiIndex] !== theCheeseyKey) {
+  //     return;
+  //   }
+  //
+  //   const checked = [...checkedPhrases];
+  //   const squareIndex = checked.indexOf(phrase);
+  //
+  //   if (squareIndex > -1) {
+  //     checked.splice(squareIndex, 1)
+  //   } else {
+  //     checked.push(phrase)
+  //   }
+  //
+  //   setCheckedPhrases(checked);
+  //   setCenterSquareEmojis(getRandomSelectionOfEmojis());
+  //   setCenterSquareEmojiIndex(0);
+  // };
 
   return (
     <>
@@ -77,7 +70,8 @@ const Bingo: React.FC<Props> = ({ phrases, isBenisMode, toggleBenisMode, isInver
             isCheatMode={isCheatMode} toggleCheatMode={toggleCheatMode} />
         </div>
         <div className="Bingo">
-          {you.numbers.map(number => {
+          {you.draws.map(draw => {
+            console.log(draw);
             /*if (phrase === 'emoji') {
               return (
                 <EmojiSquare key={phrase}
@@ -87,12 +81,10 @@ const Bingo: React.FC<Props> = ({ phrases, isBenisMode, toggleBenisMode, isInver
                 />);
             }
 */
-            const isChecked = game.numbersDrawn.includes(number);
-
             return (
-              <Square key={number}
-                      phrase={number.toString()}
-                      isChecked={isChecked}
+              <Square key={draw.number}
+                      phrase={draw.name}
+                      isChecked={draw.matched}
                       onClick={() => {
                       }}
                       isGunAndBadgeMode={isGunAndBadgeMode}
@@ -100,7 +92,6 @@ const Bingo: React.FC<Props> = ({ phrases, isBenisMode, toggleBenisMode, isInver
             )
           })}
         </div>
-        Last number drawn: {game.numberNames[game.numbersDrawn.reverse()[0]]}
       </div>
       {ITS_BINGO && <MakeItFuckingRain isBenisMode={isBenisMode} />}
     </>

@@ -1,4 +1,4 @@
-import React, { EventHandler, FormEvent, KeyboardEvent, KeyboardEventHandler, useState } from "react";
+import React, { EventHandler, FormEvent, KeyboardEvent, useState } from "react";
 
 import './ChatCompose.scss';
 

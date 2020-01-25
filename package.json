@@ -25,7 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "surge": "surge ./build cheesey-bingo.surge.sh"
+    "surge": "surge ./build cheesey-bingo.surge.sh",
+    "start:docker": "docker-compose up"
   },
   "eslintConfig": {
     "extends": "react-app"

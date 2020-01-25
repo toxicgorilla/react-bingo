@@ -1,15 +1,21 @@
 import { SocketService } from "./SocketService";
 import { Game, GameCreate, GameRequest } from "../types";
+import environment from "../constants/environment";
 
 type KnownMethods = 'ClientStartedNewGame' | 'LobbyUpdateGame' | 'ClientJoinedGame';
-type KnownEvents = 'LobbyNewGameHasStarted' | 'LobbyUserJoinedGame' | 'LobbyPlayerNumbers' | 'LobbyPlayerMessage' | 'LobbyUpdateGame';
+type KnownEvents =
+  'LobbyNewGameHasStarted'
+  | 'LobbyUserJoinedGame'
+  | 'LobbyPlayerNumbers'
+  | 'LobbyPlayerMessage'
+  | 'LobbyUpdateGame';
 
-const LOBBY_URL = 'https://localhost:5001/hub/lobby';
+const LOBBY_URL = `${environment.API_URL}/hub/lobby`;
 
 class GameService {
   constructor(private gameSocket = new SocketService<KnownMethods, KnownEvents>(LOBBY_URL)) {
     this.listen('LobbyNewGameHasStarted');
-    this.listen('LobbyUserJoinedGame' );
+    this.listen('LobbyUserJoinedGame');
     this.listen('LobbyPlayerNumbers');
     this.listen('LobbyPlayerMessage');
     this.listen('LobbyUpdateGame');

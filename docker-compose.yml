@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  cheesey-bingo-front-end:
+    container_name: cheesey-bingo-front-end
+    restart: always
+    build: .
+    environment:
+      PORT: 80
+      PUBLIC_URL: https://cheeseybingo.co.uk
+      VIRTUAL_HOST: cheeseybingo.co.uk,www.cheeseybingo.co.uk
+      LETSENCRYPT_HOST: cheeseybingo.co.uk,www.cheeseybingo.co.uk
+      LETSENCRYPT_EMAIL: hello@jackallen.me
+      REACT_APP_API_URL: https://api.cheeseybingo.co.uk
+    expose:
+      - 80
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true
+    name: proxy-network

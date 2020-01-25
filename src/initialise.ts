@@ -1,5 +1,6 @@
 import GameService from "./services/GameService";
 import { AppStore } from "./store";
+import environment from "./constants/environment";
 
 // TODO: Refactor this all
 
@@ -42,7 +43,7 @@ const initialise = async (store: AppStore) => {
     });
 
     try {
-      const response = await fetch('https://localhost:5001/api/game');
+      const response = await fetch(`${environment.API_URL}/api/game`);
       const games = await response.json();
 
       await store.dispatch({

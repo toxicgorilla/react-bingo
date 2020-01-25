@@ -11,6 +11,7 @@ services:
       VIRTUAL_HOST: cheeseybingo.co.uk
       LETSENCRYPT_HOST: cheeseybingo.co.uk
       LETSENCRYPT_EMAIL: hello@jackallen.me
+      REACT_APP_API_URL: https://api.cheeseybingo.co.uk
     expose:
       - 80
     networks:
